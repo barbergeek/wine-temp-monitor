@@ -1,1 +1,2 @@
+# add to /boot/config.txt
 dtoverlay=w1-gpio,gpiopin=4

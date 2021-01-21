@@ -1,0 +1,11 @@
+[Unit]
+Description=Wine Refrigerator Temperature Monitor
+
+[Service]
+WorkingDirectory=/home/pi/wine-temp-monitor/
+User=pi
+ExecStart=/home/pi/wine-temp-monitor/temperature.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

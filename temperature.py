@@ -19,7 +19,7 @@ device_file = device_folder + '/w1_slave'
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code: {}".format(rc))
-    client.publish(topic=STATUS_TOPIC, payload="Online", qos=0, retain=True)	
+    client.publish(topic=STATUS_TOPIC, payload="online", qos=0, retain=True)	
 
 def on_disconnect(client, userdata, rc):
     print("Client got disconnected")
@@ -27,7 +27,7 @@ def on_disconnect(client, userdata, rc):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect
-client.will_set(topic=STATUS_TOPIC, payload="Offline", qos=0, retain=True)
+client.will_set(topic=STATUS_TOPIC, payload="offline", qos=0, retain=True)
 client.connect(BROKER_ADDR)
 
 def read_temp_raw():
@@ -53,7 +53,7 @@ while True:
     temp_f = int(round(temp_c * 9.0 / 5.0 + 32.0,2)*2)/2.0
     client.publish(topic=TEMP_TOPIC, payload=temp_f, qos=0, retain=True)
     now = datetime.now()
-    print(now.strftime("%d/%m/%Y %H:%M:%S"),'temperature (F)', temp_f)
+    #print(now.strftime("%d/%m/%Y %H:%M:%S"),'temperature (F)', temp_f)
     time.sleep(60)
 
 #client.disconnect()
